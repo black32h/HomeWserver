@@ -42,6 +42,14 @@ public class Server {
                         out.writeInt(fileSize);
                         out.write(fileData);
                         System.out.println("Файл відправлено назад клієнту.");
+
+                        // Отображение текста из файла
+                        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                            String line;
+                            while ((line = reader.readLine()) != null) {
+                                System.out.println(line);
+                            }
+                        }
                     } else {
                         out.writeUTF("Файл занадто великий. Повинен бути ≤ 1 КБ.");
                         System.out.println("Файл не задовольняє умовам.");
